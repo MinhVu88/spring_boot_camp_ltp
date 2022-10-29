@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Grades</title>
+
+		<!-- @{link expression} specifies an url endpoint or a path to resources	-->
+		<link th:href="@{css/grades.css}" rel="stylesheet">
+	</head>
+	<body>
+		<div class="topnav">
+			<a href="/">Form</a>
+		</div>
+
+		<div class= "container">
+			<h2 > Grades </h2>
+			<table id="table">
+				<tr>
+					<th>Student</th>
+					<th>Subject</th>
+					<th>Score</th>
+				</tr>
+
+				<!-- ${variable expression} returns a model attribute or a value that derives from it	-->
+				<!--
+				<tr>
+					<td th:text="${grade.name}"></td>
+					<td th:text="${grade.subject}"></td>
+					<td th:text="${grade.score}"></td>
+				</tr>
+				-->
+
+				<!-- ${selection expression} selects a field from a previously bound object	-->
+				<!--
+				<tr th:object="${grade}">
+					<td th:text="*{name}"></td>
+					<td th:text="*{subject}"></td>
+					<td th:text="*{score}"></td>
+				</tr>
+				-->
+
+				<!-- Thymeleaf loops	-->
+				<tr th:each="grade : ${grades}">
+					<td th:text="${grade.name}"></td>
+					<td th:text="${grade.subject}"></td>
+					<td th:text="${grade.score}"></td>
+					<td>
+						<a
+							role="button"
+							class="update"
+							th:href="@{/(id = ${grade.id})}"
+						>
+							Update
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

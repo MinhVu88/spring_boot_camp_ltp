@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Form</title>
+		<link th:href="@{css/form1.css}" rel="stylesheet">
+	</head>
+	<body>
+		<div class="topnav">
+			<h1>Grade Submission App</h1>
+		</div>
+		<div class="container">
+			<form
+				method="post"
+				th:object="${grade}"
+				th:action="@{/handle-submit}"
+			>
+				<input type="hidden" th:field="*{id}">
+				<p style="color: red" th:errors="*{name}"></p>
+				<input
+					type="text"
+					placeholder="Name"
+					th:field="*{name}"
+				>
+				<input
+					required
+					type="text"
+					placeholder="Score"
+					th:field="*{score}"
+				>
+				<p style="color: red" th:errors="*{subject}"></p>
+				<input
+					type="text"
+					placeholder="Subject"
+					th:field="*{subject}"
+				>
+				<br><br>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	</body>
+</html>

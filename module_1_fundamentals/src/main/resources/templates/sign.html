@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Workbook 2.3</title>
+	</head>
+	<body>
+		<h1>Workbook 2.3</h1>
+		<h2 th:text="'Speed: ' + ${speed}"></h2>
+		<img
+			alt="slow-down"
+			width="200"
+			th:if="${speed > 60}"
+			src="/images/slow-down.png"
+		/>
+		<img
+			alt="speed-limit"
+			width="200"
+			th:unless="${speed > 60}"
+			src="/images/speed-limit.png"
+		/>
+	</body>
+</html>
