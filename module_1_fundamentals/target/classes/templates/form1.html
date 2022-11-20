@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<title>Form</title>
-		<link th:href="@{css/form1.css}" rel="stylesheet">
+		<link th:href="@{/css/form1.css}" rel="stylesheet"/>
 	</head>
 	<body>
 		<div class="topnav">
@@ -21,8 +21,8 @@
 					placeholder="Name"
 					th:field="*{name}"
 				>
+				<p style="color: red" th:errors="*{score}"></p>
 				<input
-					required
 					type="text"
 					placeholder="Score"
 					th:field="*{score}"

@@ -1,5 +1,7 @@
 package com.udemy.ltp.spring_boot_camp.sections.sec_10_field_validation_grade_submission.model;
 
+import com.udemy.ltp.spring_boot_camp.sections.sec_10_field_validation_grade_submission.annotation.Score;
+
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
@@ -12,6 +14,7 @@ public class Grade {
 	@NotBlank(message = "subject is required")
 	private String subject;
 
+	@Score(message = "a score must be a letter grade")
 	private String score;
 
 	public Grade() {
