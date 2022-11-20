@@ -25,7 +25,7 @@ public class GradeController {
 		int index = getGradeIndexById(id);
 
 		model.addAttribute(
-		"grade",
+			"grade",
 			index != Constants.NOT_FOUND ? grades.get(index) : new Grade()
 		);
 
