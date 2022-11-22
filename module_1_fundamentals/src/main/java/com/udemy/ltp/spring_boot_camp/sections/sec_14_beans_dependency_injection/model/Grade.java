@@ -17,14 +17,13 @@ public class Grade {
 	@Score(message = "a score must be a letter grade")
 	private String score;
 
+	public Grade() {}
+
 	public Grade(String name, String subject, String score) {
+		this.id = UUID.randomUUID().toString();
 		this.name = name;
 		this.subject = subject;
 		this.score = score;
-	}
-
-	public Grade() {
-		this.id = UUID.randomUUID().toString();
 	}
 
 	public String getId() {

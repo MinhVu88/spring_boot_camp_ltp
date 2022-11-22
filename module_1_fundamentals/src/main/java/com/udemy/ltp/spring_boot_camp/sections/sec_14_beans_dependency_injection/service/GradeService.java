@@ -34,9 +34,11 @@ public class GradeService {
 
 	public int getGradeIndexById(String id) {
 		for(int i = 0; i < getGrades().size(); i++) {
-			if(getGrades().get(i).getId().equalsIgnoreCase(id)) {
-				return i;
-			}
+			// approach 1 (UnnecessaryStubbingException)
+			// if(getGrades().get(i).getId().equalsIgnoreCase(id)) return i;
+
+			// approach 2
+			if(getGrade(i).getId().equalsIgnoreCase(id)) return i;
 		}
 
 		// index not found
