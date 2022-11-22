@@ -14,52 +14,102 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+// import static org.mockito.Mockito.lenient;
+
 
 @ExtendWith(MockitoExtension.class)
 public class GradeServiceTest {
 	@Mock
-	private GradeRepo gradeRepo;
+	private GradeRepo mockedGradeRepo;
 
 	@InjectMocks
-	private GradeService gradeService;
+	private GradeService gradeService; // inject the mocked gradeRepo into gradeService
 
 	@Test
 	public void getGradesTest() {
 		// step 1 -> Arrange: mock the data needed for the unit test
-		List<Grade> mockedData = Arrays.asList(
+		List<Grade> expectedResults = Arrays.asList(
 			new Grade("John Doe", "math", "A+"),
 			new Grade("Jane Doe", "physics", "A-")
 		);
 
-		when(gradeRepo.getGrades()).thenReturn(mockedData);
+		when(mockedGradeRepo.getGrades()).thenReturn(expectedResults);
 
-		// step 2 -> Act: call the method that's tested
-		List<Grade> results = gradeService.getGrades();
+		// step 2 -> Act: call the method that's meant to be tested
+		List<Grade> actualResults = gradeService.getGrades();
 
 		// step 3 -> Assert: check if the method behaves properly
-		assertEquals("John Doe", results.get(0).getName());
-		assertEquals("physics", results.get(1).getSubject());
+		assertEquals("John Doe", actualResults.get(0).getName());
+		assertEquals("physics", actualResults.get(1).getSubject());
 	}
 
 	@Test
 	public void getGradeIndexByIdTest() {
-		// Arrange
-		when(gradeRepo.getGrades()).thenReturn(
-			Arrays.asList(
-				new Grade("John Doe", "math", "A+"),
-				new Grade("Jane Doe", "physics", "A-")
-			)
-		);
+		// ARRANGE
+		Grade expectedResult = new Grade("John Doe", "math", "A+");
 
-		List<Grade> results = gradeService.getGrades();
+		when(mockedGradeRepo.getGrades()).thenReturn(Arrays.asList(expectedResult));
+		when(mockedGradeRepo.getGrade(0)).thenReturn(expectedResult);
 
-		// Act
-		int validIndex = gradeService.getGradeIndexById(results.get(0).getId());
+		// UnnecessaryStubbingException occurs for using approach 1 & can be bypassed by calling lenient()
+		// lenient().when(gradeRepo.getGrade(0)).thenReturn(expectedResult);
+
+		// ACT
+		int validIndex = gradeService.getGradeIndexById(expectedResult.getId());
 		int invalidIndex = gradeService.getGradeIndexById("-1");
 
-		// Assert
+		// ASSERT
 		assertEquals(0, validIndex);
 		assertEquals(Constants.NOT_FOUND, invalidIndex);
+	}
+
+	@Test
+	public void getGradeByIdTest() {
+		// ARRANGE
+		Grade expectedResult = new Grade("Jane Doe", "physics", "A-");
+
+		when(mockedGradeRepo.getGrades()).thenReturn(Arrays.asList(expectedResult));
+		when(mockedGradeRepo.getGrade(0)).thenReturn(expectedResult);
+
+		// ACT
+		Grade actualResult = gradeService.getGradeById(expectedResult.getId());
+
+		// ASSERT
+		assertEquals(expectedResult, actualResult);
+	}
+
+	@Test
+	public void submitGradeTest1() {
+		// ARRANGE
+		Grade expectedResult = new Grade("Layne Staley", "vocal", "A+");
+
+		when(mockedGradeRepo.getGrades()).thenReturn(Arrays.asList(expectedResult));
+		when(mockedGradeRepo.getGrade(0)).thenReturn(expectedResult);
+
+		Grade newGrade = new Grade("Jerry Cantrell", "guitar", "A-");
+
+		// ACT
+		gradeService.submitGrade(newGrade);
+
+		// ASSERT
+		verify(mockedGradeRepo, times(1)).addGrade(newGrade);
+	}
+
+	@Test
+	public void submitGradeTest2() {
+		// ARRANGE
+		Grade expectedResult = new Grade("Scott Weiland", "vocal", "C+");
+
+		when(mockedGradeRepo.getGrades()).thenReturn(Arrays.asList(expectedResult));
+		when(mockedGradeRepo.getGrade(0)).thenReturn(expectedResult);
+
+		expectedResult.setScore("A+");
+
+		// ACT
+		gradeService.submitGrade(expectedResult);
+
+		// ASSERT
+		verify(mockedGradeRepo, times(1)).updateGrade(0, expectedResult);
 	}
 }
