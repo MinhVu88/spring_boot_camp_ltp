@@ -3,13 +3,13 @@ package com.udemy.ltp.spring_boot_camp.sections.sec_14_beans_dependency_injectio
 
 import com.udemy.ltp.spring_boot_camp.sections.sec_14_beans_dependency_injection.model.Grade;
 // import org.springframework.stereotype.Component;
-// import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // @Component
-// @Repository
+@Repository
 public class GradeRepo {
 	private List<Grade> grades = new ArrayList<>();
 
