@@ -1,4 +1,4 @@
-package com.udemy.ltp.spring_boot_camp.sections.sec_16_unit_testing.service;
+package com.udemy.ltp.spring_boot_camp.sections.sec_16_testing_web_app.service;
 
 import com.udemy.ltp.spring_boot_camp.sections.sec_14_beans_dependency_injection.Constants;
 import com.udemy.ltp.spring_boot_camp.sections.sec_14_beans_dependency_injection.model.Grade;
