@@ -1,6 +1,7 @@
 package com.udemy.ltp.spring_boot_camp.contacts.repository;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+// import java.util.Arrays;
 import java.util.List;
 
 import com.udemy.ltp.spring_boot_camp.contacts.pojo.Contact;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ContactRepository {
+	/*
 	private List<Contact> contacts = Arrays.asList(
 		new Contact("1", "Maynard Keenan", "123"),
 		new Contact("2", "Adam Jones", "456"),
@@ -15,6 +17,9 @@ public class ContactRepository {
 	  new Contact("4", "Paul D'Amour", "101112"),
 		new Contact("5", "Justin Chancellor", "131415")
 	);
+	*/
+
+	private List<Contact> contacts = new ArrayList<>();
 
 	public List<Contact> getContacts() {
 		return contacts;
@@ -34,5 +39,11 @@ public class ContactRepository {
 
 	public void deleteContact(int index) {
 		contacts.remove(index);
+	}
+
+	public void deleteContacts() {
+		if(contacts.size() > 0) {
+			contacts.clear();
+		}
 	}
 }
