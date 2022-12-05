@@ -11,7 +11,22 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_14_beans_dependency_injection/AppConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/challenges/sec_9_challenge_2/GlobalSuperstoreApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_14_beans_dependency_injection/GradeSubmissionApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_12_3_layer_codebase/GradeSubmissionApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_8_mvc/GradeSubmissionApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_17_react/GradeSubmissionApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/sections/sec_10_field_validation/GradeSubmissionApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/challenges/sec_7_challenge_1/PaintingApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/workbooks/sec_4/Workbook_1_2.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/workbooks/sec_8/workbook_2_3/WorkbookApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/workbooks/sec_8/workbook_2_2/WorkbookApp.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/udemy/ltp/spring_boot_camp/workbooks/sec_8/workbook_2_1/WorkbookApp.java</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
