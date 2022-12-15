@@ -15,12 +15,12 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 
-	@GetMapping("/contact/{id}")
+	@GetMapping("/contacts/{id}")
 	public ResponseEntity<Contact> getContact(@PathVariable String id) {
 		try {
 			Contact contact = contactService.getContactById(id);
 
-			System.out.println("GET \"/contact/{id}\" -> " + contact.toString());
+			System.out.println("GET \"/contacts/{id}\" -> " + contact.toString());
 
 			return new ResponseEntity<>(contact, HttpStatus.OK);
 		} catch(NoContactException e) {
@@ -37,16 +37,16 @@ public class ContactController {
 		return new ResponseEntity<>(contacts, HttpStatus.OK);
 	}
 
-	@PostMapping("/contact")
+	@PostMapping("/contacts/new")
 	public ResponseEntity<HttpStatus> createContact(@RequestBody Contact contact) {
 		contactService.saveContact(contact);
 
-		System.out.println("POST \"/contact\" -> " + contact.toString());
+		System.out.println("POST \"/contacts/new\" -> " + contact.toString());
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/contact/{id}")
+	@PutMapping("/contacts/{id}")
 	public ResponseEntity<Contact> updateContact(
 		@PathVariable String id,
 		@RequestBody Contact contact
@@ -54,7 +54,7 @@ public class ContactController {
 		try {
 			contactService.updateContact(id, contact);
 
-			System.out.println("PUT \"/contact/{id}\" -> " + contact.toString());
+			System.out.println("PUT \"/contacts/{id}\" -> " + contact.toString());
 
 			return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
 		} catch(NoContactException e) {
@@ -62,12 +62,12 @@ public class ContactController {
 		}
 	}
 
-	@DeleteMapping("/contact/{id}")
+	@DeleteMapping("/contacts/{id}")
 	public ResponseEntity<HttpStatus> deleteContact(@PathVariable String id) {
 		try {
 			contactService.deleteContact(id);
 
-			System.out.println("DELETE \"/contact/{id}\" -> id: " + id);
+			System.out.println("DELETE \"/contacts/{id}\" -> id: " + id);
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch(NoContactException e) {

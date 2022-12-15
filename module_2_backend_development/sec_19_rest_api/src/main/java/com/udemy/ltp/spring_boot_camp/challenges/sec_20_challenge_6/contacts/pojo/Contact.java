@@ -1,11 +1,27 @@
 package com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.pojo;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public class Contact {
 	private String id;
+
+	@NotBlank(message = "name is required")
 	private String name;
+
+	@NotBlank(message = "phone number is required")
 	private String phoneNumber;
+
+	public Contact(String id, String name, String phoneNumber) {
+		this.id = id;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Contact(String name, String phoneNumber) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+	}
 
 	public Contact() {
 		this.id = UUID.randomUUID().toString();
