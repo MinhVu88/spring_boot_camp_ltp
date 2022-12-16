@@ -20,14 +20,14 @@ public class ContactController {
 	private ContactService contactService;
 
 	/*
-	@GetMapping("/contact/{id}")
+	@GetMapping("/contacts/{id}")
 	public void getContact(@PathVariable String id) {
 		System.out.println(id);
 	}
 	*/
 
 	/*
-	@GetMapping("/contact/{id}")
+	@GetMapping("/contacts/{id}")
 	@ResponseBody
 	public Contact getContact(@PathVariable String id) {
 		return new Contact("1", "Maynard Keenan", "123");
@@ -35,17 +35,17 @@ public class ContactController {
   */
 
 	/*
-	@GetMapping("/contact/{id}")
+	@GetMapping("/contacts/{id}")
 	public Contact getContact(@PathVariable String id) {
 		return new Contact("1", "Maynard Keenan", "123");
 	}
 	*/
 
-	@GetMapping("/contact/{id}")
+	@GetMapping("/contacts/{id}")
 	public ResponseEntity<Contact> getContact(@PathVariable String id) {
 		Contact contact = contactService.getContactById(id);
 
-		System.out.println("GET \"/contact/{id}\" -> " + contact.toString());
+		System.out.println("GET \"/contacts/{id}\" -> " + contact.toString());
 
 		return new ResponseEntity<>(contact, HttpStatus.OK);
 	}
@@ -59,32 +59,32 @@ public class ContactController {
 		return new ResponseEntity<>(contacts, HttpStatus.OK);
 	}
 
-	@PostMapping("/contact")
+	@PostMapping("/contacts/new")
 	public ResponseEntity<HttpStatus> createContact(@RequestBody Contact contact) {
 		contactService.saveContact(contact);
 
-		System.out.println("POST \"/contact\" -> " + contact.toString());
+		System.out.println("POST \"/contacts/new\" -> " + contact.toString());
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/contact/{id}")
+	@PutMapping("/contacts/{id}")
 	public ResponseEntity<Contact> updateContact(
 		@PathVariable String id,
 		@RequestBody Contact contact
 	) {
 		contactService.updateContact(id, contact);
 
-		System.out.println("PUT \"/contact/{id}\" -> " + contact.toString());
+		System.out.println("PUT \"/contacts/{id}\" -> " + contact.toString());
 
 		return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/contact/{id}")
+	@DeleteMapping("/contacts/{id}")
 	public ResponseEntity<HttpStatus> deleteContact(@PathVariable String id) {
 		contactService.deleteContact(id);
 
-		System.out.println("DELETE \"/contact/{id}\" -> id: " + id);
+		System.out.println("DELETE \"/contacts/{id}\" -> id: " + id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

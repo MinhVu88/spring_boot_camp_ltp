@@ -1,8 +1,8 @@
 package com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.service;
 
 import com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.exception.NoContactException;
+import com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.pojo.Contact;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.repo.ContactRepository;
-import com.udemy.ltp.spring_boot_camp.contacts.pojo.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

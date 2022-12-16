@@ -1,6 +1,6 @@
 package com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.repo;
 
-import com.udemy.ltp.spring_boot_camp.contacts.pojo.Contact;
+import com.udemy.ltp.spring_boot_camp.challenges.sec_20_challenge_6.contacts.pojo.Contact;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
