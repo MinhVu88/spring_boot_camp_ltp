@@ -2,17 +2,19 @@ package com.udemy.ltp.spring_boot_camp.grade_submission.web;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Student;
 import com.udemy.ltp.spring_boot_camp.grade_submission.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-	@Autowired
+	// @Autowired
 	StudentService studentService;
 
 	@PostMapping
@@ -24,9 +26,9 @@ public class StudentController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-		Student currentStudent = studentService.getStudent(id);
+		Student existingStudent = studentService.getStudent(id);
 
-		return new ResponseEntity<>(currentStudent, HttpStatus.OK);
+		return new ResponseEntity<>(existingStudent, HttpStatus.OK);
 	}
 
 	@GetMapping("/all")

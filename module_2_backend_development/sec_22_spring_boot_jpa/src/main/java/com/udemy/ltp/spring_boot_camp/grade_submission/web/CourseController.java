@@ -1,12 +1,14 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission.web;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Course;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/course")
 public class CourseController {

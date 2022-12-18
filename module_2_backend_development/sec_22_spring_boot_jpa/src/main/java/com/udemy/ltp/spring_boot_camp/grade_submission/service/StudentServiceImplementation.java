@@ -2,15 +2,17 @@ package com.udemy.ltp.spring_boot_camp.grade_submission.service;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Student;
 import com.udemy.ltp.spring_boot_camp.grade_submission.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class StudentServiceImplementation implements StudentService {
-	@Autowired
+	// @Autowired
 	private StudentRepository studentRepository;
 
 	@Override

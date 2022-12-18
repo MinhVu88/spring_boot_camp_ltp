@@ -1,20 +1,36 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission.service;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Grade;
+import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Student;
+import com.udemy.ltp.spring_boot_camp.grade_submission.repository.GradeRepository;
+import com.udemy.ltp.spring_boot_camp.grade_submission.repository.StudentRepository;
+import lombok.AllArgsConstructor;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class GradeServiceImplementation implements GradeService {
+	// @Autowired
+	private GradeRepository gradeRepository;
+
+	// @Autowired
+	private StudentRepository studentRepository;
+
 	@Override
 	public Grade getGrade(Long studentId, Long courseId) {
-		return null;
+		return gradeRepository.findByStudentId(studentId);
 	}
 
 	@Override
 	public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-		return null;
+		Student student = studentRepository.findById(studentId).orElse(null);
+
+		grade.setStudent(student);
+
+		return gradeRepository.save(grade);
 	}
 
 	@Override
@@ -23,9 +39,7 @@ public class GradeServiceImplementation implements GradeService {
 	}
 
 	@Override
-	public void deleteGrade(Long studentId, Long courseId) {
-
-	}
+	public void deleteGrade(Long studentId, Long courseId) {}
 
 	@Override
 	public List<Grade> getStudentGrades(Long studentId) {

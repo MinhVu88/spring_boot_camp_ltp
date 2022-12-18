@@ -1,10 +1,12 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission.service;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Course;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class CourseServiceImplementation implements CourseService {
 	@Override
