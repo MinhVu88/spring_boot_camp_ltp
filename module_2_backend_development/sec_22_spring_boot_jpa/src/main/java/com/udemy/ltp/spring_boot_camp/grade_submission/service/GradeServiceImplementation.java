@@ -20,11 +20,6 @@ public class GradeServiceImplementation implements GradeService {
 	private StudentRepository studentRepository;
 
 	@Override
-	public Grade getGrade(Long studentId, Long courseId) {
-		return gradeRepository.findByStudentId(studentId);
-	}
-
-	@Override
 	public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
 		Student student = studentRepository.findById(studentId).orElse(null);
 
@@ -34,12 +29,9 @@ public class GradeServiceImplementation implements GradeService {
 	}
 
 	@Override
-	public Grade updateGrade(String score, Long studentId, Long courseId) {
-		return null;
+	public Grade getGrade(Long studentId, Long courseId) {
+		return gradeRepository.findByStudentId(studentId);
 	}
-
-	@Override
-	public void deleteGrade(Long studentId, Long courseId) {}
 
 	@Override
 	public List<Grade> getStudentGrades(Long studentId) {
@@ -55,4 +47,12 @@ public class GradeServiceImplementation implements GradeService {
 	public List<Grade> getAllGrades() {
 		return null;
 	}
+
+	@Override
+	public Grade updateGrade(String score, Long studentId, Long courseId) {
+		return null;
+	}
+
+	@Override
+	public void deleteGrade(Long studentId, Long courseId) {}
 }

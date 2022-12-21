@@ -17,6 +17,17 @@ public class GradeController {
 	// @Autowired
 	private GradeService gradeService;
 
+	@PostMapping("/student/{studentId}/course/{courseId}")
+	public ResponseEntity<Grade> saveGrade(
+	@RequestBody Grade grade,
+	@PathVariable Long studentId,
+	@PathVariable Long courseId
+	) {
+		Grade newGrade = gradeService.saveGrade(grade, studentId, courseId);
+
+		return new ResponseEntity<>(newGrade, HttpStatus.CREATED);
+	}
+
 	@GetMapping("/student/{studentId}/course/{courseId}")
 	public ResponseEntity<Grade> getGrade(
 		@PathVariable Long studentId,
@@ -27,15 +38,19 @@ public class GradeController {
 		return new ResponseEntity<>(existingGrade, HttpStatus.OK);
 	}
 
-	@PostMapping("/student/{studentId}/course/{courseId}")
-	public ResponseEntity<Grade> saveGrade(
-		@RequestBody Grade grade,
-		@PathVariable Long studentId,
-		@PathVariable Long courseId
-	) {
-		Grade newGrade = gradeService.saveGrade(grade, studentId, courseId);
+	@GetMapping("/student/{studentId}")
+	public ResponseEntity<List<Grade>> getStudentGrades(@PathVariable Long studentId) {
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
-		return new ResponseEntity<>(newGrade, HttpStatus.CREATED);
+	@GetMapping("/course/{courseId}")
+	public ResponseEntity<List<Grade>> getCourseGrades(@PathVariable Long courseId) {
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@GetMapping("/all")
+	public ResponseEntity<List<Grade>> getGrades() {
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/student/{studentId}/course/{courseId}")
@@ -53,20 +68,5 @@ public class GradeController {
 		@PathVariable Long courseId
 	) {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-
-	@GetMapping("/student/{studentId}")
-	public ResponseEntity<List<Grade>> getStudentGrades(@PathVariable Long studentId) {
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@GetMapping("/course/{courseId}")
-	public ResponseEntity<List<Grade>> getCourseGrades(@PathVariable Long courseId) {
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@GetMapping("/all")
-	public ResponseEntity<List<Grade>> getGrades() {
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

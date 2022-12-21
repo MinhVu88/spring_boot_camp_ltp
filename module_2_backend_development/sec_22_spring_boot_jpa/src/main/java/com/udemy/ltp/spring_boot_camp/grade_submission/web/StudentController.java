@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 	// @Autowired
-	StudentService studentService;
+	private StudentService studentService;
 
 	@PostMapping
 	public ResponseEntity<Student> saveStudent(@RequestBody Student student) {

@@ -1,6 +1,8 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission;
 
+import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Course;
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Student;
+import com.udemy.ltp.spring_boot_camp.grade_submission.repository.CourseRepository;
 import com.udemy.ltp.spring_boot_camp.grade_submission.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +16,8 @@ import java.util.Arrays;
 public class GradeSubmissionApp implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository;
+	@Autowired
+	private CourseRepository courseRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -26,6 +30,17 @@ public class GradeSubmissionApp implements CommandLineRunner {
 		};
 
 		studentRepository.saveAll(Arrays.asList(students));
+
+		Course[] courses = new Course[] {
+			new Course("Opiate", "EP", "Censorship & organized religion."),
+			new Course("Undertow", "ALBUM_1", "Imposing waves of misery & dread."),
+			new Course("Aenima", "ALBUM_2", "Another Dead Hero."),
+			new Course("Lateralus", "ALBUM_3", "Spiral Out."),
+			new Course("10000 Days", "ALBUM_4", "The orbital period of the planet Saturn."),
+			new Course("Fear Inoculum", "ALBUM_5", "Se7en.")
+		};
+
+		courseRepository.saveAll(Arrays.asList(courses));
 	}
 
 	public static void main(String[] args) {
