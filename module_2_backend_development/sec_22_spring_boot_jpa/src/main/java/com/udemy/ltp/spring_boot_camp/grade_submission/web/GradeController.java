@@ -19,9 +19,9 @@ public class GradeController {
 
 	@PostMapping("/student/{studentId}/course/{courseId}")
 	public ResponseEntity<Grade> saveGrade(
-	@RequestBody Grade grade,
-	@PathVariable Long studentId,
-	@PathVariable Long courseId
+		@RequestBody Grade grade,
+		@PathVariable Long studentId,
+		@PathVariable Long courseId
 	) {
 		Grade newGrade = gradeService.saveGrade(grade, studentId, courseId);
 
@@ -39,18 +39,24 @@ public class GradeController {
 	}
 
 	@GetMapping("/student/{studentId}")
-	public ResponseEntity<List<Grade>> getStudentGrades(@PathVariable Long studentId) {
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<List<Grade>> getOneStudentGrades(@PathVariable Long studentId) {
+		List<Grade> oneStudentGrades = gradeService.getOneStudentGrades(studentId);
+
+		return new ResponseEntity<>(oneStudentGrades, HttpStatus.OK);
 	}
 
 	@GetMapping("/course/{courseId}")
-	public ResponseEntity<List<Grade>> getCourseGrades(@PathVariable Long courseId) {
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<List<Grade>> getOneCourseGrades(@PathVariable Long courseId) {
+		List<Grade> oneCourseGrades = gradeService.getOneCourseGrades(courseId);
+
+		return new ResponseEntity<>(oneCourseGrades, HttpStatus.OK);
 	}
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Grade>> getGrades() {
-		return new ResponseEntity<>(HttpStatus.OK);
+		List<Grade> allGrades = gradeService.getAllGrades();
+
+		return new ResponseEntity<>(allGrades, HttpStatus.OK);
 	}
 
 	@PutMapping("/student/{studentId}/course/{courseId}")
@@ -59,7 +65,11 @@ public class GradeController {
 		@PathVariable Long studentId,
 		@PathVariable Long courseId
 	) {
-		return new ResponseEntity<>(grade, HttpStatus.OK);
+		String newScore = grade.getScore();
+
+		Grade updatedGrade = gradeService.updateGrade(newScore, studentId, courseId);
+
+		return new ResponseEntity<>(updatedGrade, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/student/{studentId}/course/{courseId}")
@@ -67,6 +77,8 @@ public class GradeController {
 		@PathVariable Long studentId,
 		@PathVariable Long courseId
 	) {
+		gradeService.deleteGrade(studentId, courseId);
+
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
