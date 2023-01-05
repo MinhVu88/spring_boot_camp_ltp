@@ -12,7 +12,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "grade")
+@Table(
+	name = "grade",
+	uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"student_id", "course_id"})
+	}
+)
 public class Grade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +28,10 @@ public class Grade {
 	private String score;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(referencedColumnName = "id", name = "student_id")
+	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	private Student student;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "course_id", referencedColumnName = "id")
+	private Course course;
 }

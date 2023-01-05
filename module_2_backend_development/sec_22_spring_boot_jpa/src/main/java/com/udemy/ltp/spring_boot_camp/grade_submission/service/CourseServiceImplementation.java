@@ -1,6 +1,7 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission.service;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Course;
+import com.udemy.ltp.spring_boot_camp.grade_submission.exception.CourseNotFoundException;
 import com.udemy.ltp.spring_boot_camp.grade_submission.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,15 @@ public class CourseServiceImplementation implements CourseService {
 	public Course getCourse(Long id) {
 		Optional<Course> course = courseRepository.findById(id);
 
-		return course.orElse(null);
+		/*
+		if(course.isPresent()) {
+			return course.get();
+		} else {
+			throw new CourseNotFoundException(id);
+		}
+		*/
+
+		return unwrapCourse(course, id);
 	}
 
 	@Override
@@ -33,5 +42,13 @@ public class CourseServiceImplementation implements CourseService {
 	@Override
 	public void deleteCourse(Long id) {
 		courseRepository.deleteById(id);
+	}
+
+	static Course unwrapCourse(Optional<Course> entity, Long id) {
+		if(entity.isPresent()) {
+			return entity.get();
+		} else {
+			throw new CourseNotFoundException(id);
+		}
 	}
 }

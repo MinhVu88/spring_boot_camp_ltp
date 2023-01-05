@@ -1,6 +1,7 @@
 package com.udemy.ltp.spring_boot_camp.grade_submission.service;
 
 import com.udemy.ltp.spring_boot_camp.grade_submission.entity.Student;
+import com.udemy.ltp.spring_boot_camp.grade_submission.exception.StudentNotFoundException;
 import com.udemy.ltp.spring_boot_camp.grade_submission.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,15 @@ public class StudentServiceImplementation implements StudentService {
 	public Student getStudent(Long id) {
 		Optional<Student> student = studentRepository.findById(id);
 
-		return student.orElse(null);
+		/*
+		if(student.isPresent()) {
+			return student.get();
+		} else {
+			throw new StudentNotFoundException(id);
+		}
+		*/
+
+		return unwrapStudent(student, id);
 	}
 
 	@Override
@@ -35,5 +44,13 @@ public class StudentServiceImplementation implements StudentService {
 	@Override
 	public void deleteStudent(Long id) {
 		studentRepository.deleteById(id);
+	}
+
+	static Student unwrapStudent(Optional<Student> entity, Long id) {
+		if(entity.isPresent()) {
+			return entity.get();
+		} else {
+			throw new StudentNotFoundException(id);
+		}
 	}
 }
