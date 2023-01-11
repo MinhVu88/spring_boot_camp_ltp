@@ -1,5 +1,6 @@
 package com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.service;
 
+import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Course;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Student;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.exception.StudentNotFoundException;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.repository.StudentRepository;
@@ -34,6 +35,11 @@ public class StudentServiceImplementation implements StudentService {
 	@Override
 	public void deleteStudent(Long id) {
 		studentRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Course> getEnrolledCourses(Long studentId) {
+		return null;
 	}
 
 	static Student unwrapStudent(Optional<Student> entity, Long id) {
