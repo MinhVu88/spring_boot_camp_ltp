@@ -22,9 +22,9 @@ public class StudentController {
 		return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-		Student existingStudent = studentService.getStudent(id);
+	@GetMapping("/{studentId}")
+	public ResponseEntity<Student> getStudent(@PathVariable Long studentId) {
+		Student existingStudent = studentService.getStudent(studentId);
 
 		return new ResponseEntity<>(existingStudent, HttpStatus.OK);
 	}
@@ -36,9 +36,9 @@ public class StudentController {
 		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
-		studentService.deleteStudent(id);
+	@DeleteMapping("/{studentId}")
+	public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long studentId) {
+		studentService.deleteStudent(studentId);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
