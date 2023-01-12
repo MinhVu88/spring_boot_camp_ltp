@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/module_1_fundamentals/module_1_fundamentals.iml" filepath="$PROJECT_DIR$/module_1_fundamentals/module_1_fundamentals.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_2_backend_development/sec_19_rest_api/sec_19_rest_api.iml" filepath="$PROJECT_DIR$/module_2_backend_development/sec_19_rest_api/sec_19_rest_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_2_backend_development/sec_22_spring_boot_jpa/sec_22_spring_boot_jpa.iml" filepath="$PROJECT_DIR$/module_2_backend_development/sec_22_spring_boot_jpa/sec_22_spring_boot_jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring_boot_camp_ltp_forked.iml" filepath="$PROJECT_DIR$/.idea/spring_boot_camp_ltp_forked.iml" />
     </modules>
   </component>
