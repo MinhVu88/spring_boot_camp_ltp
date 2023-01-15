@@ -4,6 +4,7 @@ import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submis
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Course;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Grade;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.exception.GradeNotFoundException;
+import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.exception.StudentNotEnrolledException;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.repository.CourseRepository;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.repository.GradeRepository;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.repository.StudentRepository;
@@ -33,6 +34,12 @@ public class GradeServiceImplementation implements GradeService {
 			courseRepository.findById(courseId),
 			courseId
 		);
+
+		// if a student were given a grade based on a course he/she doesn't enroll in,
+		// StudentNotEnrolledException would be thrown then
+		if(!student.getCourses().contains(course)) {
+			throw new StudentNotEnrolledException(studentId, courseId);
+		}
 
 		grade.setStudent(student);
 		grade.setCourse(course);

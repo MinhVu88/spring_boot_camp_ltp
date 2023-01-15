@@ -51,6 +51,7 @@ public class Course {
 	- Set inverseJoinColumns equal to a foreign-key column (via @JoinColumn) that
 	  references the primary table of the entity, which does NOT own the association (Student).
 	*/
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 		name = "course_student",
@@ -63,5 +64,6 @@ public class Course {
 			referencedColumnName = "id"
 		)
 	)
+	// Set, instead of List, ensures that students in a course are all unique
 	private Set<Student> students;
 }

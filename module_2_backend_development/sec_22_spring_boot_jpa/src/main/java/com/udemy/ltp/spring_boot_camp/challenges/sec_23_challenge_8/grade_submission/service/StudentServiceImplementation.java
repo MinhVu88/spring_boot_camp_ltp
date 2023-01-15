@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -21,10 +22,10 @@ public class StudentServiceImplementation implements StudentService {
 	}
 
 	@Override
-	public Student getStudent(Long id) {
-		Optional<Student> student = studentRepository.findById(id);
+	public Student getStudent(Long studentId) {
+		Optional<Student> student = studentRepository.findById(studentId);
 
-		return unwrapStudent(student, id);
+		return unwrapStudent(student, studentId);
 	}
 
 	@Override
@@ -33,20 +34,22 @@ public class StudentServiceImplementation implements StudentService {
 	}
 
 	@Override
-	public void deleteStudent(Long id) {
-		studentRepository.deleteById(id);
+	public void deleteStudent(Long studentId) {
+		studentRepository.deleteById(studentId);
 	}
 
 	@Override
-	public List<Course> getEnrolledCourses(Long studentId) {
-		return null;
+	public Set<Course> getEnrolledCourses(Long studentId) {
+		Student student = getStudent(studentId);
+
+		return student.getCourses();
 	}
 
-	static Student unwrapStudent(Optional<Student> entity, Long id) {
+	static Student unwrapStudent(Optional<Student> entity, Long studentId) {
 		if(entity.isPresent()) {
 			return entity.get();
 		} else {
-			throw new StudentNotFoundException(id);
+			throw new StudentNotFoundException(studentId);
 		}
 	}
 }

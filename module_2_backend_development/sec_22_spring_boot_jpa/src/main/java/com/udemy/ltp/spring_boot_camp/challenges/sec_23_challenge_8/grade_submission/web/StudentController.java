@@ -1,5 +1,6 @@
 package com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.web;
 
+import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Course;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.entity.Student;
 import com.udemy.ltp.spring_boot_camp.challenges.sec_23_challenge_8.grade_submission.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -34,6 +36,13 @@ public class StudentController {
 		List<Student> students = studentService.getStudents();
 
 		return new ResponseEntity<>(students, HttpStatus.OK);
+	}
+
+	@GetMapping("/{studentId}/courses")
+	public ResponseEntity<Set<Course>> getEnrolledCourses(@PathVariable Long studentId) {
+		Set<Course> enrolledCourses = studentService.getEnrolledCourses(studentId);
+
+		return new ResponseEntity<>(enrolledCourses, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{studentId}")

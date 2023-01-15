@@ -48,6 +48,17 @@ public class Student {
 	- For this exercise, add it to the non-owning side.
 	*/
 	@JsonIgnore
-	@ManyToMany(mappedBy = "students")
-	private Set<Course> courses;
+	@ManyToMany(/*mappedBy = "students"*/) // why comment out mappedBy? Explained in vid 202 Solution
+	@JoinTable(
+		name = "course_student",
+		joinColumns = @JoinColumn(
+			name = "student_id",
+			referencedColumnName = "id"
+		),
+		inverseJoinColumns = @JoinColumn(
+			name = "course_id",
+			referencedColumnName = "id"
+		)
+	)
+	private Set<Course> courses; // Set, instead of List, ensures that the courses a student enrolls in are all unique
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -38,9 +39,10 @@ public class CourseController {
 	}
 
 	@GetMapping("/{courseId}/students")
-	public ResponseEntity<List<Student>> getEnrolledStudents(@PathVariable Long courseId) {
+	public ResponseEntity<Set<Student>> getEnrolledStudents(@PathVariable Long courseId) {
+		Set<Student> enrolledStudents = courseService.getEnrolledStudents(courseId);
 
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(enrolledStudents, HttpStatus.OK);
 	}
 
 	@PutMapping("/{courseId}/student/{studentId}")

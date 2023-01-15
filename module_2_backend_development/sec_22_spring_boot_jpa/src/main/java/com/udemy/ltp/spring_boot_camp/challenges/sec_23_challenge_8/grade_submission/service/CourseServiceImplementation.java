@@ -24,10 +24,10 @@ public class CourseServiceImplementation implements CourseService {
 	}
 
 	@Override
-	public Course getCourse(Long id) {
-		Optional<Course> course = courseRepository.findById(id);
+	public Course getCourse(Long courseId) {
+		Optional<Course> course = courseRepository.findById(courseId);
 
-		return unwrapCourse(course, id);
+		return unwrapCourse(course, courseId);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class CourseServiceImplementation implements CourseService {
 	}
 
 	@Override
-	public void deleteCourse(Long id) {
-		courseRepository.deleteById(id);
+	public void deleteCourse(Long courseId) {
+		courseRepository.deleteById(courseId);
 	}
 
 	@Override
@@ -57,11 +57,18 @@ public class CourseServiceImplementation implements CourseService {
 		return courseRepository.save(course);
 	}
 
-	static Course unwrapCourse(Optional<Course> entity, Long id) {
+	@Override
+	public Set<Student> getEnrolledStudents(Long courseId) {
+		Course course = getCourse(courseId);
+
+		return course.getStudents();
+	}
+
+	static Course unwrapCourse(Optional<Course> entity, Long courseId) {
 		if(entity.isPresent()) {
 			return entity.get();
 		} else {
-			throw new CourseNotFoundException(id);
+			throw new CourseNotFoundException(courseId);
 		}
 	}
 }
